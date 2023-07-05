@@ -2514,6 +2514,11 @@ def get_optimizer(args, trainable_params):
         optimizer_class = torch.optim.AdamW
         optimizer = optimizer_class(trainable_params, lr=lr, **optimizer_kwargs)
 
+    elif optimizer_type == "DAdaptAdan".lower():
+        print(f"use DAdaptAdan optimizer | {optimizer_kwargs}")
+        import pytorch_optimizer
+        optimizer_class = pytorch_optimizer.DAdaptAdan
+        optimizer = pytorch_optimizer.DAdaptAdan(trainable_params, lr=lr)
     else:
         # 任意のoptimizerを使う
         optimizer_type = args.optimizer_type  # lowerでないやつ（微妙）
