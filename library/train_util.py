@@ -2519,6 +2519,11 @@ def get_optimizer(args, trainable_params):
         import pytorch_optimizer
         optimizer_class = pytorch_optimizer.DAdaptAdan
         optimizer = pytorch_optimizer.DAdaptAdan(trainable_params, lr=lr)
+    elif optimizer_type == "Prodigy".lower():
+        print(f"use Prodigy optimizer | {optimizer_kwargs}")
+        import pytorch_optimizer
+        optimizer_class = pytorch_optimizer.Prodigy
+        optimizer = pytorch_optimizer.Prodigy(trainable_params, lr=lr)
     else:
         # 任意のoptimizerを使う
         optimizer_type = args.optimizer_type  # lowerでないやつ（微妙）
